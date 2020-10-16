@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styled Components</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      function component(strings, ...dynamicValues) {
+        return function (props) {
+          let newContent = strings.slice();
+          dynamicValues.forEach((value, index) => {
+            newContent[index] += props[value];
+          });
+
+          return newContent.join('');
+        };
+      }
+
+      const htmlTagList = [
+        'a',
+        'abbr',
+        'acronym',
+        'address',
+        'applet',
+        'area',
+        'article',
+        'aside',
+        'audio',
+        'b',
+        'base',
+        'basefont',
+        'bdi',
+        'bdo',
+        'bgsound',
+        'big',
+        'blink',
+        'blockquote',
+        'body',
+        'br',
+        'button',
+        'canvas',
+        'caption',
+        'center',
+        'cite',
+        'code',
+        'col',
+        'colgroup',
+        'content',
+        'data',
+        'datalist',
+        'dd',
+        'decorator',
+        'del',
+        'details',
+        'dfn',
+        'dir',
+        'div',
+        'dl',
+        'dt',
+        'element',
+        'em',
+        'embed',
+        'fieldset',
+        'figcaption',
+        'figure',
+        'font',
+        'footer',
+        'form',
+        'frame',
+        'frameset',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'head',
+        'header',
+        'hgroup',
+        'hr',
+        'html',
+        'i',
+        'iframe',
+        'img',
+        'input',
+        'ins',
+        'isindex',
+        'kbd',
+        'keygen',
+        'label',
+        'legend',
+        'li',
+        'link',
+        'listing',
+        'main',
+        'map',
+        'mark',
+        'marquee',
+        'menu',
+        'menuitem',
+        'meta',
+        'meter',
+        'nav',
+        'nobr',
+        'noframes',
+        'noscript',
+        'object',
+        'ol',
+        'optgroup',
+        'option',
+        'output',
+        'p',
+        'param',
+        'plaintext',
+        'pre',
+        'progress',
+        'q',
+        'rp',
+        'rt',
+        'ruby',
+        's',
+        'samp',
+        'script',
+        'section',
+        'select',
+        'shadow',
+        'small',
+        'source',
+        'spacer',
+        'span',
+        'strike',
+        'strong',
+        'style',
+        'sub',
+        'summary',
+        'sup',
+        'table',
+        'tbody',
+        'td',
+        'template',
+        'textarea',
+        'tfoot',
+        'th',
+        'thead',
+        'time',
+        'title',
+        'tr',
+        'track',
+        'tt',
+        'u',
+        'ul',
+        'var',
+        'video',
+        'wbr',
+        'xmp',
+      ];
+
+      const generateStyledComponent = (tagList) => {
+        let styled = {};
+
+        tagList.forEach((item) => {
+          styled = {
+            ...styled,
+            [item]: (styles) => {
+              return (content) => {
+                return `
+                  <${item} style="${styles}">
+                    ${content}
+                  </${item}>
+                `;
+              };
+            },
+          };
+        });
+
+        return styled;
+      };
+
+      const styled = generateStyledComponent(htmlTagList);
+
+      const AnchorStyles = styled.button`
+        color: green;
+        font-size: 80px;
+        border: 1px solid red;
+        cursor: pointer;
+      `;
+
+      const props = {
+        message: 'No te rindas',
+        name: 'Andres',
+      };
+
+      const Title = component`<marquee> ${'message'} </marquee>`(props);
+
+      function render(component, container) {
+        container.innerHTML += component;
+      }
+
+      render(AnchorStyles(Title), document.getElementById('container'));
+    </script>
+  </body>
+</html>

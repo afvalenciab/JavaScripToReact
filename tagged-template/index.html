@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tagged Template</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: rgb(119, 168, 119);
+        color: #fff;
+        letter-spacing: 1px;
+        font-size: 1.5em;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+      }
+
+      strong {
+        color: rgb(5, 105, 199);
+        background: rgb(253, 195, 148);
+        padding: 7px;
+        border: 2px solid #fff;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function taggedTemplate(strings, ...dynamicValues) {
+        let newContent = '';
+
+        strings.forEach((string, index) => {
+          const strong = dynamicValues[index]
+            ? `<strong>${dynamicValues[index]}</strong>`
+            : '';
+
+          newContent += `${string} ${strong}`;
+        });
+
+        return `<p>${newContent}</p>`;
+      }
+
+      const message = taggedTemplate`El ${'trabajo duro'} supera al ${'talento natural'}`;
+      document.body.innerHTML = message;
+    </script>
+  </body>
+</html>
