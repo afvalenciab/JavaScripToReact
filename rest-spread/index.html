@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rest-Spread</title>
+  </head>
+  <body>
+    <script>
+      function sum(...otherArgs) {
+        console.log(otherArgs);
+      }
+
+      sum(1, 2, 3);
+      sum('andres', 'felipe', 'valencia');
+
+      function makeIceCream([flavor1, flavor2, ...toppings]) {
+        // Rest Operator
+        console.log(
+          `Tienes un helado de ${flavor1} y ${flavor2} con toppings de ${toppings}`
+        );
+      }
+
+      const flavors = ['Fresa', 'Limon'];
+      const toppings = ['Chocolate', 'Vainilla', 'Mora'];
+      makeIceCream([...flavors, ...toppings]); // Spread Operator
+    </script>
+  </body>
+</html>
