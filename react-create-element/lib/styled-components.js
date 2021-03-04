@@ -1,3 +1,5 @@
+import { createElement } from './react/index.js';
+
 const htmlTagList = [
   'a',
   'abbr',
@@ -146,22 +148,16 @@ const generateStyledComponent = (tagList) => {
     if (item == 'img') {
       elemStyle = {
         [item]: (styles) => {
-          return (content) => {
-            return `
-              <${item} style="${styles}" ${content} />
-            `;
+          return (props, content) => {
+            return createElement(item, { style: styles, ...props })
           };
         },
       };
     } else {
       elemStyle = {
         [item]: (styles) => {
-          return (content) => {
-            return `
-              <${item} style="${styles}">
-                ${content}
-              </${item}>
-            `;
+          return (props, ...content) => {
+            return createElement(item, { style: styles, ...props }, content);
           };
         },
       };

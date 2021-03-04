@@ -8,9 +8,19 @@ function renderChildren(children, container) {
   return render(children, container);
 }
 
-function setProperties(prop, value, element){
-  const attribute = value;
+function setEvents(element, event, callback) {
+  return element.addEventListener(event, callback);
+}
 
+function setProperties(prop, value, element){
+  //event support
+  if (prop.startsWith('on')) {
+    const event = prop.replace('on','').toLowerCase();
+    return setEvents(element, event, value);
+  }
+
+  //attribute support
+  const attribute = value;
   return element.setAttribute(prop, attribute);
 }
 

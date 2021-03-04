@@ -7,9 +7,15 @@ class App extends Component {
   render() {
     return createElement(
       'div',
-      { class: 'app' },
+      { 
+        class: 'app'
+      },
       new Wrapper({
-        children: [createElement('h1', null, 'React.js ⭐️⭐️⭐️⭐️⭐️' ), new User({ avatar: './images/ash.jpg', name: 'Ash' })]
+        children: [
+          createElement('h1', null, 'React.js ⭐️⭐️⭐️⭐️⭐️' ), 
+          new User({ avatar: './images/ash.jpg', name: 'Ash', age: 10 }),
+          new UserStyled({ avatar: './images/ash.jpg', name: 'Ash', age: 10 })
+        ]
       })
     )
   }
