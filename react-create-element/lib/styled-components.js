@@ -139,6 +139,16 @@ const htmlTagList = [
   'xmp',
 ];
 
+function buildStyles(strings, dynamicValues, props) {
+  let styles = strings.slice();
+
+  dynamicValues.forEach((value, index) => {
+    styles[index] += value(props);
+  });
+
+  return styles.join('');
+}
+
 const generateStyledComponent = (tagList) => {
   let styled = {};
 
@@ -155,9 +165,12 @@ const generateStyledComponent = (tagList) => {
       };
     } else {
       elemStyle = {
-        [item]: (styles) => {
+        [item]: (strings, ...dynamicValues) => {
           return (props, ...content) => {
-            return createElement(item, { style: styles, ...props }, content);
+
+            const style = buildStyles(strings, dynamicValues, props);
+
+            return createElement(item, { style, ...props }, content);
           };
         },
       };
