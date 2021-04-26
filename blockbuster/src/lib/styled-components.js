@@ -155,7 +155,7 @@ const generateStyledComponent = (tagList) => {
   tagList.forEach((item) => {
     let elemStyle;
 
-    if (item == 'img') {
+    if (item == 'img' || item == 'input') {
       elemStyle = {
         [item]: (styles) => {
           return (props, content) => {
@@ -166,7 +166,7 @@ const generateStyledComponent = (tagList) => {
     } else {
       elemStyle = {
         [item]: (strings, ...dynamicValues) => {
-          return (props, ...content) => {
+          return (props, content) => {
 
             const style = buildStyles(strings, dynamicValues, props);
 

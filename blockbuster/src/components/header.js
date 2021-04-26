@@ -3,14 +3,6 @@ import styled from '../lib/styled-components.js';
 
 import Wrapper from './wrapper.js';
 
-{/* 
-  <header class="header">
-    <div class="wrapper">
-      <img src="./images/logo.png" alt="">
-    </div>
-  </header>
-*/}
-
 const HeaderStyled = styled.header`
   background: #0e3fa9;
   margin-bottom: 2em;
@@ -29,7 +21,7 @@ class Header extends Component {
   render() {
     return HeaderStyled(
       null,
-      new Wrapper({ children: HeaderLogo({ src: './images/logo.png', alt: 'Blockbuster Logo' }) })
+      Wrapper(null, HeaderLogo({ src: './images/logo.png', alt: 'Blockbuster Logo' }))
     )
   }
 }
