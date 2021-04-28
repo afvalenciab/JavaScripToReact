@@ -1,0 +1,4 @@
+const ADD_MOVIES = 'ADD-MOVIES';
+const SET_FILTER = 'SET_FILTER';
+
+export { ADD_MOVIES, SET_FILTER };

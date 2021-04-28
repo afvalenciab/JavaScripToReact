@@ -1,6 +1,5 @@
 
 function render(element, container) {
-  console.log(typeof element);
   if (typeof element === 'string' || element instanceof Element || typeof element === 'number' ) {
     return container.append(element);
   }

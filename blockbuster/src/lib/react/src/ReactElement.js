@@ -25,8 +25,6 @@ function setProperties(prop, value, element){
 }
 
 export function createElement(type, props, ...children) {
-  console.log(children);
-
   const element = document.createElement(type);
 
   props && Object.keys(props).forEach(prop => setProperties(prop, props[prop], element));
