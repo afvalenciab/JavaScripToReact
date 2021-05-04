@@ -1,11 +1,24 @@
 import { Component, createElement } from '../lib/react/index.js';
 
+import store from '../store.js';
+import { SET_FILTER } from '../actions/index.js';
+
 import Select from './select.js';
 
 class Filters extends Component {
+  handleChange = (event) => {
+    store.dispatch({
+      type: SET_FILTER,
+      payload: event.target.value,
+    })
+  }
+
   render() {
     return Select(
-      { name: 'filters'},
+      {
+        name: 'filters',
+        onchange: this.handleChange,
+      },
       [
         createElement('option', { value: 'all' }, 'Todas'),
         createElement('option', { value: 'mostValued' }, 'Más valoradas'),
